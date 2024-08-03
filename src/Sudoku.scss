@@ -135,15 +135,11 @@
   }
 }
 
-
-
 .loader {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-
   --w:10ch;
   font-weight: bold;
   font-family: monospace;
@@ -155,6 +151,7 @@
   color: #0000;
   animation: l40 2s infinite;
 }
+
 .loader:before {
   content:"Loading...";
 }
@@ -216,17 +213,3 @@
         calc(-5*var(--w)) -20px #0000,calc(-6*var(--w)) -20px #0000,calc(-7*var(--w)) -20px #0000,calc(-8*var(--w)) -20px #0000,calc(-9*var(--w)) -20px #0000;
   }
 }
-
-
-
-// .loader {
-//   width: 120px;
-//   height: 20px;
-//   background:
-//    linear-gradient(#000 0 0) 0/0% no-repeat
-//    #ddd;
-//   animation: l1 2s infinite linear;
-// }
-// @keyframes l1 {
-//     100% {background-size:100%}
-// }
