@@ -13,12 +13,29 @@
   display: flex;
 }
 
+.row--selected {
+  background-color: #E1EBEE;
+}
+
+.col--selected {
+  background-color: #E1EBEE;
+}
+
 .cell {
   height: 30px;
   width: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.clickable-cell {
+  cursor: pointer;
+}
+
+.cell--selected {
+  color: white;
+  background-color: #89CFF0;
 }
 
 .row:not(:nth-child(9)) {
@@ -35,4 +52,13 @@
 
 .cell:nth-child(3), .cell:nth-child(6) {
   border-right: 2px solid black;
+}
+
+.number-list {
+  display: flex;
+  gap: 1rem;
+}
+
+.number-list__item {
+  cursor: pointer;
 }
