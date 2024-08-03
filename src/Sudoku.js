@@ -8,10 +8,26 @@ const Sudoku = () => {
 
   useEffect(() => {
     if (!isInitialRender.current) {
+      const storedBoard = sessionStorage.getItem('sudokuBoard');
+      if (storedBoard) {
+        setBoard(JSON.parse(storedBoard));
+      } else {
       fetchSudokuData();
+    }
     }
     isInitialRender.current = true;
   }, []);
+
+  useEffect(() => {
+    if (board) {
+      sessionStorage.setItem('sudokuBoard', JSON.stringify(board));
+    }
+  }, [board]);
+
+  const restart = () => {
+    setBoard(null);
+    fetchSudokuData();
+  }
 
   const fetchSudokuData = async () => {
     try {
