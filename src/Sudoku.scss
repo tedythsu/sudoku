@@ -1,0 +1,74 @@
+.sudoku {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__difficulty {
+    margin-bottom: 1rem;
+  }
+
+  &__board {
+    border: 2px solid black;
+    cursor: default;
+  }
+
+  &__row {
+    display: flex;
+
+    &:not(:nth-child(9)) {
+      border-bottom: 1px solid grey;
+    }
+
+    &:nth-child(3), &:nth-child(6) {
+      border-bottom: 2px solid black;
+    }
+
+    &--selected {
+      background-color: #E1EBEE;
+    }
+  }
+
+  &__cell {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:not(:nth-child(9)) {
+      border-right: 1px solid grey;
+    }
+
+    &:nth-child(3), &:nth-child(6) {
+      border-right: 2px solid black;
+    }
+
+    &--empty {
+      cursor: pointer;
+    }
+
+    &--selected {
+      color: white;
+      background-color: #89CFF0;
+    }
+
+    &--col-selected {
+      background-color: #E1EBEE;
+    }
+  }
+
+  &__number-list {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  &__number-item {
+    cursor: pointer;
+    padding: 5px 5px;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+}
