@@ -2,18 +2,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 5vmin;
+  margin-top: 5vmin;
 
   &__difficulty {
-    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 6vmin;
   }
 
   &__board {
     border: 2px solid black;
     cursor: default;
+    display: flex;
+    flex-direction: column;
+    width: 95vw;
+    height: 95vw;
+    max-width: 300px;
+    max-height: 300px;
   }
 
   &__row {
     display: flex;
+    flex: 1;
 
     &:not(:nth-child(9)) {
       border-bottom: 1px solid grey;
@@ -29,11 +39,16 @@
   }
 
   &__cell {
-    height: 30px;
-    width: 30px;
+    font-size: 4vmin;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &:hover {
+      color: white;
+      background-color: #89CFF0;
+    }
 
     &:not(:nth-child(9)) {
       border-right: 1px solid grey;
@@ -59,13 +74,17 @@
 
   &__number-list {
     display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
+    width: 95vw;
+    max-width: 300px;
+    justify-content: space-between;
   }
 
   &__number-item {
     cursor: pointer;
-    padding: 5px 5px;
+    padding: 0 5px;
+    font-size: 8vmin;
+    font-weight: bold;
+    color: #545AA7;
 
     &:hover {
       background-color: #f0f0f0;
