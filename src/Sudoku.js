@@ -4,13 +4,17 @@ import './Sudoku.scss';
 const Sudoku = () => {
   const [board, setBoard] = useState(null);
   const [selectedCell, setSelectedCell] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const isInitialRender = useRef(false);
 
   useEffect(() => {
     if (!isInitialRender.current) {
       const storedBoard = sessionStorage.getItem('sudokuBoard');
       if (storedBoard) {
-        setBoard(JSON.parse(storedBoard));
+        setTimeout(() => {
+          setBoard(JSON.parse(storedBoard));
+          setIsLoading(false);
+        }, 1800);
       } else {
         fetchSudokuData();
       }
@@ -25,6 +29,7 @@ const Sudoku = () => {
   }, [board]);
 
   const restart = () => {
+    setIsLoading(true);
     setBoard(null);
     fetchSudokuData();
   }
@@ -34,9 +39,13 @@ const Sudoku = () => {
       const response = await fetch('https://sudoku-api.vercel.app/api/dosuku');
       const data = await response.json();
       console.log(data);
-      setBoard(data);
+      setTimeout(() => {
+        setBoard(data);
+        setIsLoading(false);
+      }, 2000);
     } catch (error) {
       console.error('Fetch error:', error);
+      setIsLoading(false);
     }
   };
 
@@ -61,8 +70,8 @@ const Sudoku = () => {
 
   const numbers = Array.from({ length: 9 }, (_, index) => index + 1);
 
-  if (!board) {
-    return <div>Loading...</div>;
+  if (isLoading) {
+    return <div className="loader"></div>;
   }
 
   return (
