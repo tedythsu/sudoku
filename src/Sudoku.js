@@ -12,8 +12,8 @@ const Sudoku = () => {
       if (storedBoard) {
         setBoard(JSON.parse(storedBoard));
       } else {
-      fetchSudokuData();
-    }
+        fetchSudokuData();
+      }
     }
     isInitialRender.current = true;
   }, []);
@@ -67,6 +67,9 @@ const Sudoku = () => {
 
   return (
     <div className='sudoku'>
+      <div className='sudoku__heading'>
+        <h1>Sudoku</h1>
+      </div>
       <div className='sudoku__difficulty'>Difficulty: {board.newboard.grids[0].difficulty}</div>
       <div className='sudoku__board'>
         {board.newboard.grids[0].value.map((row, rowIndex) => (
@@ -96,6 +99,15 @@ const Sudoku = () => {
           <div className='sudoku__number-item' key={number} onClick={() => handleNumberSelection(number)}>{number}</div>
         ))}
       </div>
+      <div className='sudoku__restart-button'>
+        <button onClick={() => restart()}>RESTART</button>
+      </div>
+      <footer className="sudoku__footer">
+        <p>
+          Data sourced from <a href="https://dosuku.com" target="_blank" rel="noopener noreferrer">Dosuku</a> | 
+          Developed by <a href="https://github.com/tedythsu" target="_blank" rel="noopener noreferrer">Ted Hsu</a>
+        </p>
+      </footer>
     </div>
   );
 };
