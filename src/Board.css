@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.board {
+  border: 2px solid black;
+  cursor: default;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row:not(:nth-child(9)) {
+  border-bottom: 1px solid grey;
+}
+
+.row:nth-child(3), .row:nth-child(6) {
+  border-bottom: 2px solid black;
+}
+
+.cell:not(:nth-child(9)) {
+  border-right: 1px solid grey;
+}
+
+.cell:nth-child(3), .cell:nth-child(6) {
+  border-right: 2px solid black;
+}
