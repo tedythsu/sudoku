@@ -19,8 +19,8 @@
     flex-direction: column;
     width: 95vw;
     height: 95vw;
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 600px;
+    max-height: 600px;
   }
 
   &__row {
@@ -78,7 +78,7 @@
   &__number-list {
     display: flex;
     width: 95vw;
-    max-width: 300px;
+    max-width: 600px;
     justify-content: space-between;
   }
 
@@ -102,10 +102,10 @@
       box-sizing: border-box;
       color: #111827;
       font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-      font-size: .875rem;
+      font-size: 4vmin;
       font-weight: 600;
       line-height: 1.25rem;
-      padding: .75rem 1rem;
+      padding: 3.63vmin 4.85vmin;
       text-align: center;
       text-decoration: none #D1D5DB solid;
       text-decoration-thickness: auto;
