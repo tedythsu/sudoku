@@ -4,6 +4,7 @@ import './Sudoku.scss';
 const Sudoku = () => {
   const [board, setBoard] = useState(null);
   const [selectedCell, setSelectedCell] = useState(null);
+  const [selectedNum, setSelectedNum] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [difficulty, setDifficulty] = useState(null);
   const isInitialRender = useRef(false);
@@ -65,7 +66,9 @@ const Sudoku = () => {
   };
 
   const handleCellClick = (rowIndex, colIndex) => {
+    const selectedNum = board.newboard.grids[0].value[rowIndex][colIndex];
     setSelectedCell({ row: rowIndex, col: colIndex });
+    setSelectedNum(selectedNum);
   };
 
   const handleNumberSelection = (number) => {
@@ -78,6 +81,7 @@ const Sudoku = () => {
       const updatedBoard = JSON.parse(JSON.stringify(board));
       updatedBoard.newboard.grids[0].value[selectedCell.row][selectedCell.col] = number;
       setBoard(updatedBoard);
+      setSelectedNum(number);
     } else {
       window.alert('錯誤!')
     }
@@ -111,6 +115,7 @@ const Sudoku = () => {
                   ${selectedCell?.row === rowIndex && selectedCell?.col === cellIndex ? 'sudoku__cell--selected' : ''}
                   ${cell === 0 ? 'sudoku__cell--empty' : ''}
                   ${selectedCell?.col === cellIndex && selectedCell?.row !== rowIndex ? 'sudoku__cell--col-selected' : ''}
+                  ${selectedNum === cell && cell !== 0 ? 'sudoku__cell--same-num' : ''}
                 `.replace(/\s+/g," ").trim()} 
                 onClick={() => handleCellClick(rowIndex, cellIndex)}
               >
