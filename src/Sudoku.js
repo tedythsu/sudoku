@@ -76,19 +76,26 @@ const Sudoku = () => {
   }
 
   const fetchSudokuData = async () => {
-    try {
-      const response = await fetch('https://sudoku-api.vercel.app/api/dosuku');
-      const data = await response.json();
-      console.log(data);
-      setTimeout(() => {
-        setBoard(data);
-        setIsLoading(false);
-      }, 2000);
-    } catch (error) {
-      console.error('Fetch error:', error);
-      setIsLoading(false);
+    let success = false;
+    while (!success) {
+      try {
+        const response = await fetch('https://sudoku-api.vercel.app/api/dosuku');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        console.log(data);
+        setTimeout(() => {
+          setBoard(data);
+          setIsLoading(false);
+        }, 2000);
+        success = true;
+      } catch (error) {
+        console.error('Fetch error:', error);
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+      }
     }
-  };
+  };  
 
   const handleCellClick = (rowIndex, colIndex) => {
     const selectedNum = board.newboard.grids[0].value[rowIndex][colIndex];
