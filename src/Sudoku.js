@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Sudoku.scss';
+import * as Dialog from '@radix-ui/react-dialog';
 
 const Sudoku = () => {
   const [board, setBoard] = useState(null);
@@ -8,6 +9,13 @@ const Sudoku = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [difficulty, setDifficulty] = useState(null);
   const isInitialRender = useRef(false);
+  const [open, setOpen] = useState(false);
+  const [dialogDescription, setDialogDescription] = useState(null);
+  const [errorMessages] = useState([
+    "Sorry, wrong number. Give it another shot!",
+    "Hmm, that's not correct. Try again!",
+    "Oops, that's not the right number!"
+  ]);
 
   useEffect(() => {
     if (!isInitialRender.current) {
@@ -42,6 +50,10 @@ const Sudoku = () => {
       default:
         break;
     }
+  }
+
+  const openDialog = () => {
+    setOpen(true);
   }
 
   const startNewGame = () => {
@@ -83,7 +95,9 @@ const Sudoku = () => {
       setBoard(updatedBoard);
       setSelectedNum(number);
     } else {
-      window.alert('錯誤!')
+      const randomIndex = Math.floor(Math.random() * errorMessages.length);
+      setDialogDescription(errorMessages[randomIndex]);
+      openDialog();
     }
   }
 
@@ -144,8 +158,8 @@ const Sudoku = () => {
           <div className={`sudoku__number-item ${checkNumberCompleteness(number) ? 'sudoku__number-item--completed' : ''}`.trim()} key={number} onClick={() => handleNumberSelection(number)}>{number}</div>
         ))}
       </div>
-      <div className='sudoku__new-game-button'>
-        <button onClick={() => startNewGame()}>New Game</button>
+      <div>
+        <button className='btn' onClick={() => startNewGame()}>New Game</button>
       </div>
       <footer className="sudoku__footer">
         <p>
@@ -153,6 +167,23 @@ const Sudoku = () => {
           Developed by <a href="https://github.com/tedythsu" target="_blank" rel="noopener noreferrer">Ted Hsu</a>
         </p>
       </footer>
+
+      <Dialog.Root open={open} onOpenChange={setOpen}>
+        <Dialog.Portal>
+          <Dialog.Overlay className="DialogOverlay" />
+          <Dialog.Content className="DialogContent">
+            <Dialog.Title className="DialogTitle">Message</Dialog.Title>
+            <Dialog.Description className="DialogDescription">
+            {dialogDescription}
+            </Dialog.Description>
+            <div style={{ display: 'flex', marginTop: 25, justifyContent: 'flex-end' }}>
+              <Dialog.Close asChild>
+                <button className='btn'>OK</button>
+              </Dialog.Close>
+            </div>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
     </div>
   );
 };

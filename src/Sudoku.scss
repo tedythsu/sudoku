@@ -118,42 +118,6 @@
     }
   }
 
-  &__new-game-button {
-    button {
-      background-color: #FFFFFF;
-      border: 0;
-      border-radius: .5rem;
-      box-sizing: border-box;
-      color: #111827;
-      font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-      font-size: 4vmin;
-      font-weight: 600;
-      line-height: 1.25rem;
-      padding: 3.63vmin 4.85vmin;
-      text-align: center;
-      text-decoration: none #D1D5DB solid;
-      text-decoration-thickness: auto;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-      cursor: pointer;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
-    }
-
-    button:hover {
-      background-color: rgb(249,250,251);
-    }
-
-    button:focus {
-      outline: 2px solid transparent;
-      outline-offset: 2px;
-    }
-    
-    button:focus-visible {
-      box-shadow: none;
-    }
-  }
-
   &__footer {
     font-size: 3vmin;
   }
@@ -235,5 +199,96 @@
    text-shadow: 
         calc( 0*var(--w)) -20px #0000,calc(-1*var(--w)) -20px #0000,calc(-2*var(--w)) -20px #0000,calc(-3*var(--w)) -20px #0000,calc(-4*var(--w)) -20px #0000, 
         calc(-5*var(--w)) -20px #0000,calc(-6*var(--w)) -20px #0000,calc(-7*var(--w)) -20px #0000,calc(-8*var(--w)) -20px #0000,calc(-9*var(--w)) -20px #0000;
+  }
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0 15px;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 500;
+  height: 35px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  background-color: #FFFFFF;
+
+  &:hover {
+    background-color: #F2EFF3;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn:hover {
+  background-color: #F2EFF3;
+}
+
+.DialogOverlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  inset: 0;
+  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.DialogContent {
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70vw;
+  max-width: 300px;
+  max-height: 85vh;
+  padding: 25px;
+  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.DialogContent:focus {
+  outline: none;
+}
+
+.DialogTitle {
+  margin: 0;
+  font-weight: 500;
+  color: #211f26;
+  font-size: 17px;
+}
+
+.DialogDescription {
+  margin: 10px 0 10px;
+  color: #65636d;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
 }
