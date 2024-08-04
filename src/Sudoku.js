@@ -5,6 +5,7 @@ const Sudoku = () => {
   const [board, setBoard] = useState(null);
   const [selectedCell, setSelectedCell] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [difficulty, setDifficulty] = useState(null);
   const isInitialRender = useRef(false);
 
   useEffect(() => {
@@ -25,8 +26,22 @@ const Sudoku = () => {
   useEffect(() => {
     if (board) {
       sessionStorage.setItem('sudokuBoard', JSON.stringify(board));
+      setDifficulty(board.newboard.grids[0].difficulty);
     }
   }, [board]);
+
+  const getDifficultyColor = (difficulty) => {
+    switch (difficulty) {
+      case 'Easy':
+        return 'sudoku__difficulty--easy';
+      case 'Medium':
+        return 'sudoku__difficulty--medium';
+      case 'Hard':
+        return 'sudoku__difficulty--hard';
+      default:
+        break;
+    }
+  }
 
   const restart = () => {
     setIsLoading(true);
@@ -79,7 +94,9 @@ const Sudoku = () => {
       <div className='sudoku__heading'>
         <h1>Sudoku</h1>
       </div>
-      <div className='sudoku__difficulty'>Difficulty: {board.newboard.grids[0].difficulty}</div>
+      <div className='sudoku__difficulty'>
+        Difficulty: <span className={`${getDifficultyColor(difficulty)}`}>{difficulty}</span>
+      </div>
       <div className='sudoku__board'>
         {board.newboard.grids[0].value.map((row, rowIndex) => (
           <div 

@@ -10,6 +10,21 @@
 
   &__difficulty {
     font-size: 3vmin;
+
+    &--easy {
+      font-weight: bold;
+      color: #7FFF00;
+    }
+
+    &--medium {
+      font-weight: bold;
+      color: #FFA500;
+    }
+
+    &--hard {
+      font-weight: bold;
+      color: #FF0000;
+    }
   }
 
   &__board {
