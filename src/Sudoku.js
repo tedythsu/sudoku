@@ -44,7 +44,7 @@ const Sudoku = () => {
     }
   }
 
-  const restart = () => {
+  const startNewGame = () => {
     setIsLoading(true);
     setBoard(null);
     fetchSudokuData();
@@ -130,8 +130,8 @@ const Sudoku = () => {
           <div className='sudoku__number-item' key={number} onClick={() => handleNumberSelection(number)}>{number}</div>
         ))}
       </div>
-      <div className='sudoku__restart-button'>
-        <button onClick={() => restart()}>RESTART</button>
+      <div className='sudoku__new-game-button'>
+        <button onClick={() => startNewGame()}>New Game</button>
       </div>
       <footer className="sudoku__footer">
         <p>
