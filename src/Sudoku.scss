@@ -111,6 +111,11 @@
     &:hover {
       background-color: #f0f0f0;
     }
+
+    &--completed {
+      opacity: 0.25;
+      pointer-events: none;
+    }
   }
 
   &__new-game-button {

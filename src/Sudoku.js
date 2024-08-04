@@ -87,6 +87,20 @@ const Sudoku = () => {
     }
   }
 
+  const checkNumberCompleteness = (number) => {
+    let isCompleted = true;
+    const boardValue = board.newboard.grids[0].value;
+
+    boardValue.forEach(row => {
+      if (!row.includes(number)) {
+        isCompleted = false;
+        return;
+      }
+    });
+
+    return isCompleted;
+  }
+
   const numbers = Array.from({ length: 9 }, (_, index) => index + 1);
 
   if (isLoading) {
@@ -127,7 +141,7 @@ const Sudoku = () => {
       </div>
       <div className='sudoku__number-list'>
         {numbers.map((number) => (
-          <div className='sudoku__number-item' key={number} onClick={() => handleNumberSelection(number)}>{number}</div>
+          <div className={`sudoku__number-item ${checkNumberCompleteness(number) ? 'sudoku__number-item--completed' : ''}`.trim()} key={number} onClick={() => handleNumberSelection(number)}>{number}</div>
         ))}
       </div>
       <div className='sudoku__new-game-button'>
