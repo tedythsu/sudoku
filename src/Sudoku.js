@@ -33,9 +33,22 @@ const Sudoku = () => {
   }, []);
 
   useEffect(() => {
+    const checkSudokuCompletion = () => {
+      const boardSolution = board.newboard.grids[0].solution;
+      const boardValue = board.newboard.grids[0].value;
+      const solutionString = JSON.stringify(boardSolution);
+      const valueString = JSON.stringify(boardValue);
+
+      if (solutionString === valueString) {
+        setDialogDescription('Awesome! Sudoku solved!');
+        openDialog();
+      }
+    }
+
     if (board) {
       sessionStorage.setItem('sudokuBoard', JSON.stringify(board));
       setDifficulty(board.newboard.grids[0].difficulty);
+      checkSudokuCompletion()
     }
   }, [board]);
 
