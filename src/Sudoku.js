@@ -76,26 +76,41 @@ const Sudoku = () => {
   }
 
   const fetchSudokuData = async () => {
-    let success = false;
-    while (!success) {
+    try {
+      const response = await fetch('https://sudoku-api.vercel.app/api/dosuku');
+      if (!response.ok) {
+        throw new Error('Failed to fetch data from API');
+      }
+      const data = await response.json();
+      console.log('API data:', data);
+      setTimeout(() => {
+        setBoard(data);
+        setIsLoading(false);
+      }, 2000);
+    } catch (error) {
+      console.error('API fetch error:', error);
       try {
-        const response = await fetch('https://sudoku-api.vercel.app/api/dosuku');
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
+        const localDataResponse = await fetch('sudoku/sudokuData.json', {
+          headers: {
+            'Accept': 'application/json',
+            'User-agent': 'learning app',
+          }
+        });
+        if (!localDataResponse.ok) {
+          throw new Error('Failed to fetch local data');
         }
-        const data = await response.json();
-        console.log(data);
+        const localData = await localDataResponse.json();
+        console.log('Local data:', localData);
         setTimeout(() => {
-          setBoard(data);
+          setBoard(localData);
           setIsLoading(false);
         }, 2000);
-        success = true;
-      } catch (error) {
-        console.error('Fetch error:', error);
-        await new Promise((resolve) => setTimeout(resolve, 5000));
+      } catch (localError) {
+        console.error('Local fetch error:', localError);
       }
     }
-  };  
+  };
+  
 
   const handleCellClick = (rowIndex, colIndex) => {
     const selectedNum = board.newboard.grids[0].value[rowIndex][colIndex];
