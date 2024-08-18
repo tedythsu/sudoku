@@ -90,7 +90,7 @@ const Sudoku = () => {
     } catch (error) {
       console.error('API fetch error:', error);
       try {
-        const localDataResponse = await fetch('/sudokuData.json', {
+        const localDataResponse = await fetch('/sudoku/sudokuData.json', {
           headers: {
             'Accept': 'application/json',
             'User-agent': 'learning app',
